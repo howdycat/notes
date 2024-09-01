@@ -8,6 +8,9 @@ import { visit } from "unist-util-visit"
 import { Root, Element, ElementContent } from "hast"
 import { GlobalConfiguration } from "../cfg"
 import { i18n } from "../i18n"
+import TagList from "./TagList"
+import Search from "./Search"
+import IndexContent from "./pages/IndexContent"
 
 interface RenderComponents {
   head: QuartzComponent
@@ -21,6 +24,7 @@ interface RenderComponents {
 }
 
 const headerRegex = new RegExp(/h[1-6]/)
+
 export function pageResources(
   baseDir: FullSlug | RelativeURL,
   staticResources: StaticResources,
@@ -212,6 +216,7 @@ export function renderPage(
     </div>
   )
 
+
   const lang = componentData.fileData.frontmatter?.lang ?? cfg.locale?.split("-")[0] ?? "en"
   const doc = (
     <html lang={lang}>
@@ -220,6 +225,7 @@ export function renderPage(
         <div id="quartz-root" class="page">
           <Body {...componentData}>
             {LeftComponent}
+            
             <div class="center">
               <div class="page-header">
                 <Header {...componentData}>
@@ -233,7 +239,10 @@ export function renderPage(
                   ))}
                 </div>
               </div>
-              <Content {...componentData} />
+              
+            <Content {...componentData} />
+
+
               <hr />
               <div class="page-footer">
                 {afterBody.map((BodyComponent) => (
@@ -251,6 +260,6 @@ export function renderPage(
         .map((res) => JSResourceToScriptElement(res))}
     </html>
   )
-
+ 
   return "<!DOCTYPE html>\n" + render(doc)
 }

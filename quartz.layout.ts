@@ -48,3 +48,9 @@ export const defaultListPageLayout: PageLayout = {
   ],
   right: [],
 }
+
+export const indexPageLayout: PageLayout = {
+    beforeBody: [Component.ArticleTitle()],
+    left: [],
+    right: []
+}
