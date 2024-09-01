@@ -14,5 +14,5 @@ jobs:
           key: ${{ secrets.PRIVATE_HOST_KEY }}
           port: 22
           script_stop: true
-          script: cd /var/www/gilly.garden/quartz && npx quartz sync && npx quartz build
+          script: cd /var/www/gilly.garden/quartz && git submodule update --remote --merge content && npx quartz build
     
