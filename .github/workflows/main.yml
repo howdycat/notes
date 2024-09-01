@@ -1,0 +1,18 @@
+name: Repository Dispatch
+on: 
+  repository_dispatch:
+    types: [rebuild]
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create SSH key
+        uses: appleboy/ssh-action@v0.1.7
+        with: 
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_HOST_KEY }}
+          port: 22
+          script_stop: true
+          script: npx quartz build
+    
