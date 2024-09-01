@@ -14,5 +14,5 @@ jobs:
           key: ${{ secrets.PRIVATE_HOST_KEY }}
           port: 22
           script_stop: true
-          script: nvm use node && cd /var/www/gilly.garden/quartz/content && git pull && cd .. && npx quartz build
+          script: nvm use node && cd /var/www/gilly.garden/quartz && npx quartz sync && npx quartz build
     
